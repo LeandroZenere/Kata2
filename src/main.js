@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var UsuarioConsola_1 = require("./UsuarioConsola");
+var UsuarioAPI_1 = require("./UsuarioAPI");
+var UsuarioDTO_1 = require("./UsuarioDTO");
+var CrearUsuario_1 = require("./CrearUsuario");
+var nuevoUsuarioConsola = UsuarioConsola_1.UsuarioConsola.CrearUsuario("Juan", "Perez", "juanperez@email.com", "123456", "1456");
+var nuevoUsuarioAPI = UsuarioAPI_1.UsuarioAPI.CrearUsuario("Maria", "Lopez", "marialopez@email.com", "password123", "password123");
+// Crear instancias de UsuarioDTO a partir de los usuarios creados arriba
+var usuarioDTOConsola = new UsuarioDTO_1.UsuarioDTO("", "", "");
+usuarioDTOConsola.setNombre(nuevoUsuarioConsola.getNombre());
+usuarioDTOConsola.setApellido(nuevoUsuarioConsola.getApellido());
+usuarioDTOConsola.setEmail(nuevoUsuarioConsola.getEmail());
+var usuarioDTOAPI = new UsuarioDTO_1.UsuarioDTO("", "", "");
+usuarioDTOAPI.setNombre(nuevoUsuarioAPI.getNombre());
+usuarioDTOAPI.setApellido(nuevoUsuarioAPI.getApellido());
+usuarioDTOAPI.setEmail(nuevoUsuarioAPI.getEmail());
+var usuarionuevo = new CrearUsuario_1.CrearUsuario();
+var mensajeUsuarioComun = usuarionuevo.crearUsuario(usuarioDTOConsola, false);
+var mensajeUsuarioAdmin = usuarionuevo.crearUsuario(usuarioDTOAPI, true);
+console.log("Usuario Común:", mensajeUsuarioComun);
+console.log("Usuario Admin:", mensajeUsuarioAdmin);
