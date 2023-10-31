@@ -1,21 +1,22 @@
-import { UsuarioDTO } from './UsuarioDTO';
+import { UsuarioDTO } from "./UsuarioDTO";
+import { Usuario } from "./Usuario";
 
-export class CrearUsuario {
-    crearUsuario(usuarioDTO: UsuarioDTO, esAdmin: boolean): string {
-        if (esAdmin) {
-            return this.crearUsuarioAdmin(usuarioDTO);
-        } else {
-            return this.crearUsuarioComun(usuarioDTO);
-        }
-    }
+export default class API {
+  createUser(usuarioDTO: UsuarioDTO): string {
+    const usuario: Usuario = Usuario.CrearUsuario(usuarioDTO);
 
-    private crearUsuarioComun(usuarioDTO: UsuarioDTO): string {
-        return `${usuarioDTO.obtenerNombreCompleto()}, el usuario con email ${usuarioDTO.getEmail()} fue creado.`;
-    }
+    console.log("API", usuario);
 
-    private crearUsuarioAdmin(usuarioDTO: UsuarioDTO): string {
-        return `El usuario ${usuarioDTO.obtenerNombreCompleto()}, email ${usuarioDTO.getEmail()} fue creado por Admin.`;
-    }
+    return `${usuario.getNombre()}, el usuario con email ${usuario.getEmail()} fue creado.`;
+  }
 }
 
+export class Consola {
+  createUser(usuarioDTO: UsuarioDTO): string {
+    const usuario: Usuario = Usuario.CrearUsuario(usuarioDTO);
 
+    console.log("CONSOLA", usuario);
+
+    return `${usuario.getNombre()}, el usuario con email ${usuario.getEmail()} fue creado.`;
+}
+}

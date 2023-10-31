@@ -1,26 +1,13 @@
-import { UsuarioConsola } from './UsuarioConsola';
-import { UsuarioAPI } from './UsuarioAPI';
 import { UsuarioDTO } from './UsuarioDTO';
-import { CrearUsuario } from './CrearUsuario';
+import API, { Consola } from './CrearUsuario';
 
-const nuevoUsuarioConsola = UsuarioConsola.CrearUsuario("Juan", "Perez", "juanperez@email.com", "123456", "1456");
-const nuevoUsuarioAPI = UsuarioAPI.CrearUsuario("Maria", "Lopez", "marialopez@email.com", "password123", "password123");
+const crearUsuarioApi = new API();
+const crearUsuarioConsola = new Consola();
 
-// Crear instancias de UsuarioDTO a partir de los usuarios creados arriba
-const usuarioDTOConsola = new UsuarioDTO("", "", "");
-usuarioDTOConsola.setNombre(nuevoUsuarioConsola.getNombre());
-usuarioDTOConsola.setApellido(nuevoUsuarioConsola.getApellido());
-usuarioDTOConsola.setEmail(nuevoUsuarioConsola.getEmail());
+const usuarioDto1 = new UsuarioDTO("Juan", "Perez", "juanperez@email.com", "123456", "123456");
+const mensajeCreadoApi = crearUsuarioApi.createUser(usuarioDto1);
+console.log(mensajeCreadoApi);
 
-const usuarioDTOAPI = new UsuarioDTO("", "", "");
-usuarioDTOAPI.setNombre(nuevoUsuarioAPI.getNombre());
-usuarioDTOAPI.setApellido(nuevoUsuarioAPI.getApellido());
-usuarioDTOAPI.setEmail(nuevoUsuarioAPI.getEmail());
-
-const usuarionuevo = new CrearUsuario();
-
-const mensajeUsuarioComun = usuarionuevo.crearUsuario(usuarioDTOConsola, false);
-const mensajeUsuarioAdmin = usuarionuevo.crearUsuario(usuarioDTOAPI, true);
-
-console.log("Usuario Común:", mensajeUsuarioComun);
-console.log("Usuario Admin:", mensajeUsuarioAdmin);
+const usuarioDto2 = new UsuarioDTO("Maria", "Lopez", "marialopez@email.com", "password123", "password123");
+const mensajeCreadoConsola = crearUsuarioConsola.createUser(usuarioDto2);
+console.log(mensajeCreadoConsola);

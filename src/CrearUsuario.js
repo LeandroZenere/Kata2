@@ -1,23 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CrearUsuario = void 0;
-var CrearUsuario = /** @class */ (function () {
-    function CrearUsuario() {
+exports.Consola = void 0;
+var Usuario_1 = require("./Usuario");
+var API = /** @class */ (function () {
+    function API() {
     }
-    CrearUsuario.prototype.crearUsuario = function (usuarioDTO, esAdmin) {
-        if (esAdmin) {
-            return this.crearUsuarioAdmin(usuarioDTO);
-        }
-        else {
-            return this.crearUsuarioComun(usuarioDTO);
-        }
+    API.prototype.createUser = function (usuarioDTO) {
+        var usuario = Usuario_1.Usuario.CrearUsuario(usuarioDTO);
+        console.log("API", usuario);
+        return "".concat(usuario.getNombre(), ", el usuario con email ").concat(usuario.getEmail(), " fue creado.");
     };
-    CrearUsuario.prototype.crearUsuarioComun = function (usuarioDTO) {
-        return "".concat(usuarioDTO.obtenerNombreCompleto(), ", el usuario con email ").concat(usuarioDTO.getEmail(), " fue creado.");
-    };
-    CrearUsuario.prototype.crearUsuarioAdmin = function (usuarioDTO) {
-        return "El usuario ".concat(usuarioDTO.obtenerNombreCompleto(), ", email ").concat(usuarioDTO.getEmail(), " fue creado por Admin.");
-    };
-    return CrearUsuario;
+    return API;
 }());
-exports.CrearUsuario = CrearUsuario;
+exports.default = API;
+var Consola = /** @class */ (function () {
+    function Consola() {
+    }
+    Consola.prototype.createUser = function (usuarioDTO) {
+        var usuario = Usuario_1.Usuario.CrearUsuario(usuarioDTO);
+        console.log("CONSOLA", usuario);
+        return "".concat(usuario.getNombre(), ", el usuario con email ").concat(usuario.getEmail(), " fue creado.");
+    };
+    return Consola;
+}());
+exports.Consola = Consola;
